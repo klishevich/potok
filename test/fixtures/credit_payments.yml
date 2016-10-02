@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credit: one
+  month: 1
+  amount: 9.99
+  is_fine: false
+  fine_months: 1
+
+two:
+  credit: two
+  month: 1
+  amount: 9.99
+  is_fine: false
+  fine_months: 1

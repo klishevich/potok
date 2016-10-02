@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  amount: 9.99
+  credit_period_months: 1
+  rate: 9.99
+  period_months: 1
+  fine_rate: 9.99
+  amount_left: 9.99
+
+two:
+  client: two
+  amount: 9.99
+  credit_period_months: 1
+  rate: 9.99
+  period_months: 1
+  fine_rate: 9.99
+  amount_left: 9.99
