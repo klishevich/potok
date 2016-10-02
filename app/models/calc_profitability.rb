@@ -1,8 +1,18 @@
 class CalcProfitability
-  def test
-  	client = Client.first
-  	Rails.logger.info("Test client name #{client.name}")
-  end
+  # attr_accessor :subdomain, :pass, :account, 
+  #   :products, :seofilters, :products_links, :page_num, :days_upd_since, :product_field_id_seo
+  
+  # def initialize(invested_money)
+  #    @subdomain = subdomain
+  # end
+
+  # def calc
+  # end
+
+  # def test
+  # 	client = Client.first
+  # 	Rails.logger.info("Test client name #{client.name}")
+  # end
 
   def expect_history_profit(money_amount = 1)
     credits = Credit.all
