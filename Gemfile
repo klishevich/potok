@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'unicorn'
 gem 'simple_form'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

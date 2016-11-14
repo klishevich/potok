@@ -19,4 +19,17 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<%= simple_form_for(@test, html: { class: 'form-horizontal' }) do |f| %>
+			  	<%= f.input :expiration_date, as: :string %>
+			</div>
+		  <div class="form-actions">
+		    <%= button_tag "Сохранить", data: { disable_with: "Идет сохранение.." }, class: "btn btn-primary" %>
+		    <%= link_to "Отменить", '/' , class: "btn btn-default" %>
+		  </div>
+		<% end %>
+		</div>
+	</div>
 </div>

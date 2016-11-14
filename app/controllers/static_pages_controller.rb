@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def index
+  	@test = Test.new
   	@invested_money = params[:invested_money]
   	cp = CalcProfitability.new
   	@invested_money ||= 0
