@@ -24,40 +24,81 @@
   		</div>
   	</div>
   	<h2>2. Наша идея, наша модель</h2>
+  	<%= image_tag("gini.jpg", class: "img-responsive") %>
+  	<div>Мы строили модель на анкетных данных 1170 заёмщиков, 141 из которых являются дефолтниками. Наше определение дефолта: 60+ в течение всей жизни кредита.</div>
+  	<div>Оценивая переменные по степени значимости, мы выявили 5 переменных: - Количество поручителей, -Семейное положение, - Количество детей, - Всего активных кредитных договоров, - Общее число запрососв в НБКИ за последние 12 мес, на которых модель Логистической регрессии даёт Gini порядка 55% на обучающей выборке и 50% на тестовой.</div>
   	<h2>3. Бизнес-эффект (в деньгах)</h2>
+  	<%= image_tag("face_palm.jpg", width: "600px;", class: "img-responsive") %>
+  	<div>
+  		<h3>3.1. Меньше выдаем плохих кредитов</h3>
+  		<ul>
+  			<li>Экономия на дефолтах</li>
+  			<li>Экономия на операционных расходах (коллекшн и т.п.)</li>
+  		</ul>
+  	</div>
+  	<div>
+  		<h3>3.2. Делаем меньше отказов хорошим заемщикам</h3>
+  	</div>
+  	<div>
+  		<h3>3.3. Экономия на выезде кредитного аналитика</h3>
+  	</div>
   	<h2>4. Сложность реализации (внедрения)</h2>
   	<h2>5. Ценность идеи</h2>
+  	<div>Финансовый эффект от внедрения работоспособной модели для массового бизнеса включает несколько слагаемых. Мы можем получить дополнительную прибыль и избежать части возможных убытков.</div>
+  	<ol>
+  		<li>Отсутствие необходимости в дорогостоящем выезде Кредитного аналитика </li>
+  		<li>Снижение затрат на услуги коллекторских агентов</li>
+  		<li>Одобрение большего количества хороших заемщиков</li>
+  		<li>Снижение количества плохих заемщиков</li>
+  	</ol>
   	<h2>6. Онлайн калькулятор</h2>
   	<div class="row">
   		<div class="col-md-6">
 		  	<%= form_tag("/", method: "get") do %>
 		  		<div class="form-group">
-		  			<%= label_tag(:invested_money, "Сумма инвестиции", class: 'control-label') %>
-		  			<%= text_field_tag(:invested_money, @invested_money, class: 'form-control') %>
+		  			<%= label_tag(:NB_LOANS_ACTIVE_TOTAL, "Активных договоров у поручителя", class: 'control-label') %>
+		  			<%= text_field_tag(:NB_LOANS_ACTIVE_TOTAL, @NB_LOANS_ACTIVE_TOTAL, class: 'form-control') %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:GRN_NUM, "Количество поручителей", class: 'control-label') %>
+		  			<%= text_field_tag(:GRN_NUM, @GRN_NUM, class: 'form-control') %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:NB_LOANS_ACTIVE_TOTAL0, "Количество активных кредитов у получателя", class: 'control-label') %>
+		  			<%= text_field_tag(:NB_LOANS_ACTIVE_TOTAL0, @NB_LOANS_ACTIVE_TOTAL0, class: 'form-control') %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:TOTAL_INQUIRIES_12_MONTH1, "Общее число запросов кредитной истории у поручителя", class: 'control-label') %>
+		  			<%= text_field_tag(:TOTAL_INQUIRIES_12_MONTH1, @TOTAL_INQUIRIES_12_MONTH1, class: 'form-control') %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:REG_CODE, "Код региона", class: 'control-label') %>
+		  			<%= text_field_tag(:REG_CODE, @REG_CODE, class: 'form-control') %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:FAMILY_CHLD_NUM, "Количество детей", class: 'control-label') %>
+		  			<%= select_tag :FAMILY_CHLD_NUM, options_for_select([["EQ1"],["NULL"],["GT2"],["EQ2"]], :selected=> @FAMILY_CHLD_NUM), {:class => 'form-control'} %>
+		  		</div>
+		  		<div class="form-group">
+		  			<%= label_tag(:WORK_SHARE_BUSINESS, "Доля в бизнесе", class: 'control-label') %>
+		  			<%= text_field_tag(:WORK_SHARE_BUSINESS, @WORK_SHARE_BUSINESS, class: 'form-control') %>
 		  		</div>
 		  		<div class="form-group">
 			  		<%= submit_tag("Расчитать", class: 'btn btn-primary') %>
 			  	</div>
 			<% end %>
 			<div class="alert alert-success" role="alert">
-				<strong>Ожидаемая доходность:</strong> <%= @expect_profit %>
+				<strong>Рейтинг:</strong> <%= @res %>
 			</div>
 			<div class="alert alert-info" role="alert">
-				<strong>Ожидаемая историческая доходность:</strong> <%= @expect_history_profit %>
+				<%if @res != -1 %>
+				<% if @res > 2 %>
+					<strong>Хороший клиент</strong> 
+				<% else %>
+					<strong>Плохой клиент</strong> 
+				<% end %>
+				<% end %>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="form-group">
-				<%= simple_form_for(@test, html: { class: 'form-horizontal' }) do |f| %>
-			  	<%= f.input :expiration_date, as: :string %>
-			</div>
-		  <div class="form-actions">
-		    <%= button_tag "Сохранить", data: { disable_with: "Идет сохранение.." }, class: "btn btn-primary" %>
-		    <%= link_to "Отменить", '/' , class: "btn btn-default" %>
-		  </div>
-		<% end %>
 		</div>
 	</div>
 </div>
