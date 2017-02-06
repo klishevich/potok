@@ -1,5 +1,5 @@
 <div class="container">
-  	<h1>Хакатон по Рискам</h1>
+  	<h1><%= link_to "Хакатон по Рискам", "/" %></h1>
   	<h2>1. Команда 2+2</h2>
   	<div class="row">
   		<div class="col-md-3">
@@ -25,6 +25,9 @@
   	</div>
   	<h2>2. Наша идея, наша модель</h2>
   	<%= image_tag("gini.jpg", class: "img-responsive") %>
+  	<br/>
+  	<%= image_tag("depandency.jpg", class: "img-responsive") %>
+  	<br/>
   	<div>Мы строили модель на анкетных данных 1170 заёмщиков, 141 из которых являются дефолтниками. Наше определение дефолта: 60+ в течение всей жизни кредита.</div>
   	<div>Оценивая переменные по степени значимости, мы выявили 5 переменных: - Количество поручителей, -Семейное положение, - Количество детей, - Всего активных кредитных договоров, - Общее число запрососв в НБКИ за последние 12 мес, на которых модель Логистической регрессии даёт Gini порядка 55% на обучающей выборке и 50% на тестовой.</div>
   	<h2>3. Бизнес-эффект (в деньгах)</h2>
@@ -51,54 +54,46 @@
   		<li>Одобрение большего количества хороших заемщиков</li>
   		<li>Снижение количества плохих заемщиков</li>
   	</ol>
-  	<h2>6. Онлайн калькулятор</h2>
+  	<h2 id="calc0">6. Онлайн калькулятор</h2>
   	<div class="row">
   		<div class="col-md-6">
-		  	<%= form_tag("/", method: "get") do %>
+		  	<%= form_tag("/#calc0", method: "get") do %>
 		  		<div class="form-group">
-		  			<%= label_tag(:NB_LOANS_ACTIVE_TOTAL, "Активных договоров у поручителя", class: 'control-label') %>
-		  			<%= text_field_tag(:NB_LOANS_ACTIVE_TOTAL, @NB_LOANS_ACTIVE_TOTAL, class: 'form-control') %>
+		  			<%= label_tag(:married, "Женат", class: 'control-label') %>
+		  			<%= select_tag :married, options_for_select([["Нет",0],["Да",1]], :selected=> @married), {:class => 'form-control'} %>
 		  		</div>
 		  		<div class="form-group">
-		  			<%= label_tag(:GRN_NUM, "Количество поручителей", class: 'control-label') %>
-		  			<%= text_field_tag(:GRN_NUM, @GRN_NUM, class: 'form-control') %>
+		  			<%= label_tag(:child_num, "Кол-во детей", class: 'control-label') %>
+		  			<%= select_tag :child_num, options_for_select([["Нет",0],["Один",1],["Два",2],["Три и более",3]], :selected=> @child_num), {:class => 'form-control'} %>
 		  		</div>
 		  		<div class="form-group">
-		  			<%= label_tag(:NB_LOANS_ACTIVE_TOTAL0, "Количество активных кредитов у получателя", class: 'control-label') %>
-		  			<%= text_field_tag(:NB_LOANS_ACTIVE_TOTAL0, @NB_LOANS_ACTIVE_TOTAL0, class: 'form-control') %>
+		  			<%= label_tag(:active_loans, "Кол-во активных кредитов у заемщика", class: 'control-label') %>
+		  			<%= select_tag :active_loans, options_for_select([["0 - 2","A"],["3 - 4","B"],["5 и более","C"]], :selected=> @active_loans), {:class => 'form-control'} %>
 		  		</div>
 		  		<div class="form-group">
-		  			<%= label_tag(:TOTAL_INQUIRIES_12_MONTH1, "Общее число запросов кредитной истории у поручителя", class: 'control-label') %>
-		  			<%= text_field_tag(:TOTAL_INQUIRIES_12_MONTH1, @TOTAL_INQUIRIES_12_MONTH1, class: 'form-control') %>
+		  			<%= label_tag(:inquiries, "Общее число запросов кредитной истории за 12 мес", class: 'control-label') %>
+		  			<%= select_tag :inquiries, options_for_select([["0 - 7","A"],["8 - 15","B"],["16 и более","C"]], :selected=> @inquiries), {:class => 'form-control'} %>
 		  		</div>
 		  		<div class="form-group">
-		  			<%= label_tag(:REG_CODE, "Код региона", class: 'control-label') %>
-		  			<%= text_field_tag(:REG_CODE, @REG_CODE, class: 'form-control') %>
-		  		</div>
-		  		<div class="form-group">
-		  			<%= label_tag(:FAMILY_CHLD_NUM, "Количество детей", class: 'control-label') %>
-		  			<%= select_tag :FAMILY_CHLD_NUM, options_for_select([["EQ1"],["NULL"],["GT2"],["EQ2"]], :selected=> @FAMILY_CHLD_NUM), {:class => 'form-control'} %>
-		  		</div>
-		  		<div class="form-group">
-		  			<%= label_tag(:WORK_SHARE_BUSINESS, "Доля в бизнесе", class: 'control-label') %>
-		  			<%= text_field_tag(:WORK_SHARE_BUSINESS, @WORK_SHARE_BUSINESS, class: 'form-control') %>
+		  			<%= label_tag(:grn_num, "Количество поручителей", class: 'control-label') %>
+		  			<%= select_tag :grn_num, options_for_select([["Нет",0],["Один",1],["Два",2],["Три",3],["Четыре и более",4]], :selected=> @grn_num), {:class => 'form-control'} %>
 		  		</div>
 		  		<div class="form-group">
 			  		<%= submit_tag("Расчитать", class: 'btn btn-primary') %>
 			  	</div>
 			<% end %>
-			<div class="alert alert-success" role="alert">
-				<strong>Рейтинг:</strong> <%= @res %>
-			</div>
 			<div class="alert alert-info" role="alert">
-				<%if @res != -1 %>
-				<% if @res > 2 %>
-					<strong>Хороший клиент</strong> 
-				<% else %>
-					<strong>Плохой клиент</strong> 
-				<% end %>
-				<% end %>
+				<strong>Рейтинг:</strong> <%= @rating %>
 			</div>
+			<% if @good_rating %>
+			<div class="alert alert-success" role="alert">
+				<strong>Хороший клиент</strong> 
+			</div>
+			<% else %>
+			<div class="alert alert-danger" role="alert">
+				<strong>Плохой клиент</strong> 
+			</div>
+			<% end %>
 		</div>
 	</div>
 </div>
