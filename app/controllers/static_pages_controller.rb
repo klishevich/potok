@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
   	if @grn_num != nil 
 	  	@rating = logReg.calc(vFAMILY_MRTL_STATUS_NOT_M, vFAMILY_CHLD_NUM_EQ2, vNB_LOANS_ACTIVE_TOTAL_B,
 	  		vNB_LOANS_ACTIVE_TOTAL_C, vnb_TOTAL_INQUIRIES_12_MONTH_B, vnb_TOTAL_INQUIRIES_12_MONTH_C, vGRN_NUM)
-		@good_rating = @rating > 0.3 ? true : false
+		@good_rating = @rating < 0.3 ? true : false
 	end
   end
 
