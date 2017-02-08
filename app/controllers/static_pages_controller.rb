@@ -20,9 +20,17 @@ class StaticPagesController < ApplicationController
   	logReg = LogReg.new
   	if @grn_num != nil 
 	  	@rating = logReg.calc(vFAMILY_MRTL_STATUS_NOT_M, vFAMILY_CHLD_NUM_EQ2, vNB_LOANS_ACTIVE_TOTAL_B,
-	  		vNB_LOANS_ACTIVE_TOTAL_C, vnb_TOTAL_INQUIRIES_12_MONTH_B, vnb_TOTAL_INQUIRIES_12_MONTH_C, vGRN_NUM)
-		@good_rating = @rating < 0.3 ? true : false
-	end
+	  		vNB_LOANS_ACTIVE_TOTAL_C, vnb_TOTAL_INQUIRIES_12_MONTH_B, vnb_TOTAL_INQUIRIES_12_MONTH_C, vGRN_NUM)	
+      @rating_percent = @rating * 100
+      @good_rating = -1
+      case 
+      when @rating < 0.3
+        @good_rating = 2
+      when @rating < 0.5
+        @good_rating = 1
+      else
+        @good_rating = 0
+      end
+    end
   end
-
 end
