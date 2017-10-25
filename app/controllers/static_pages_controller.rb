@@ -1,4 +1,8 @@
 class StaticPagesController < ApplicationController
+
+  def test
+  end
+  
   def index
   	@married = params[:married].to_i
   	@child_num = params[:child_num].to_i
