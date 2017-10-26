@@ -3,20 +3,54 @@
  <form method="post" action="https://anketa.alfabank.ru/ona/lead">
   <p><b>Вводи данные</b></p>
   <div>
-    <label>Телефон</label>
-    <input type="text" name="phone" value="9165926645" />
+    <label>phone</label>
+    <input type="text" name="phone" value="+7 916 592-66-45" />
   </div>
   <div>
-    <label>Наименование</label>
-    <input type="text" name="name" value="старбакс"/>
+    <label>argee</label>
+    <input type="text" name="argee" value="1"/>
   </div>
   <div>
-    <label>Город</label>
-    <input type="text" name="city" value="Самара"/>
+    <label>region</label>
+    <input type="text" name="name" value="moscow"/>
   </div>
-  <input type="hidden" name="regionCode" value="77"/>
-  <input type="hidden" name="platformId" value="Yandex.Direct"/>
-  <input type="hidden" name="advCode" value="QrdgcsaRRF3526152s=="/>
-  <p><input type="submit"></p>
+  <div>
+    <label>clear</label>
+    <input type="text" name="clear" value=""/>
+  </div>
+  <div>
+    <label>dev</label>
+    <input type="text" name="dev" value="dev"/>
+  </div>
+  <div>
+    <label>regionCode</label>
+    <input type="text" name="regionCode" value="77"/>
+  </div>
+  <div>
+    <label>city</label>
+    <input type="text" name="city" value="moscow"/>
+  </div>
+  <div>
+    <label>advCode</label>
+    <input type="text" name="advCode" value=""/>
+  </div>
+  <div>
+    <label>platformId</label>
+    <input type="text" name="platformId" value="alfasite"/>
+  </div>
+  <input type="button" value="1" name ="submit" onclick="return submitForm(this.form)" >
  </form>
+  <script type="text/javascript">
+    function submitForm(form){
+        console.log('form', form);
+        var url = form.getAttribute("action");
+        var formData = {};
+        $(form).find("input[name]").each(function (index, node) {
+            formData[node.name] = node.value;
+        });
+        $.post(url, formData).done(function (data) {
+        alert(data);
+    });
+}
+  </script>
 </div>
