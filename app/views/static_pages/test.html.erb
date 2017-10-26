@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Открыть счет в Альфа-Банке</h2>
- <form method="post" action="https://anketa.alfabank.ru/ona/lead">
+ <form method="post" action="http://localhost:8080/lead">
   <p><b>Вводи данные</b></p>
   <div>
     <label>phone</label>
@@ -38,7 +38,7 @@
     <label>platformId</label>
     <input type="text" name="platformId" value="alfasite"/>
   </div>
-  <input type="button" value="1" name ="submit" onclick="return submitForm(this.form)" >
+  <input type="button" value="1" name ="submit" onclick="return submitForm2(this.form)" >
  </form>
   <script type="text/javascript">
     function submitForm(form){
@@ -49,8 +49,15 @@
             formData[node.name] = node.value;
         });
         $.post(url, formData).done(function (data) {
-        alert(data);
-    });
-}
+            alert(data);
+        });
+    }
+    function submitForm2(form) {
+        var url = form.getAttribute("action");
+        var formData = $(form).serializeArray();
+        $.post(url, formData).done(function (data) {
+            alert(data);
+        });
+    }
   </script>
 </div>
