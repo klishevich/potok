@@ -4,15 +4,23 @@
   <p><b>Вводи данные</b></p>
   <div>
     <label>phone</label>
-    <input type="text" name="phone" value="+7 916 592-66-45" />
+    <input type="text" name="phone" value="79165926645" />
+  </div>
+  <div>
+    <label>region</label>
+    <input type="text" name="name" value="Билайн"/>
+  </div>
+  <div>
+    <label>regionCode</label>
+    <input type="text" name="regionCode" value="77"/>
+  </div>
+  <div>
+    <label>city</label>
+    <input type="text" name="city" value="Москва"/>
   </div>
   <div>
     <label>argee</label>
     <input type="text" name="argee" value="1"/>
-  </div>
-  <div>
-    <label>region</label>
-    <input type="text" name="name" value="moscow"/>
   </div>
   <div>
     <label>clear</label>
@@ -23,14 +31,6 @@
     <input type="text" name="dev" value="dev"/>
   </div>
   <div>
-    <label>regionCode</label>
-    <input type="text" name="regionCode" value="77"/>
-  </div>
-  <div>
-    <label>city</label>
-    <input type="text" name="city" value="moscow"/>
-  </div>
-  <div>
     <label>advCode</label>
     <input type="text" name="advCode" value=""/>
   </div>
@@ -38,7 +38,8 @@
     <label>platformId</label>
     <input type="text" name="platformId" value="alfasite"/>
   </div>
-  <input type="button" value="1" name ="submit" onclick="return submitForm2(this.form)" >
+  <input type="button" value="js submit" name ="js submit" onclick="return submitForm2(this.form)" >
+  <input type="submit" value="post submit" name="post submit">
  </form>
   <script type="text/javascript">
     function submitForm(form){
