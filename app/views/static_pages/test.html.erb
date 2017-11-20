@@ -1,64 +1,66 @@
 <div class="container">
-  <h2>Открыть счет в Альфа-Банке</h2>
- <form method="post" action="http://localhost:8080/lead">
-  <p><b>Вводи данные</b></p>
-  <div>
-    <label>phone</label>
-    <input type="text" name="phone" value="79165926645" />
-  </div>
-  <div>
-    <label>region</label>
-    <input type="text" name="name" value="Билайн"/>
-  </div>
-  <div>
-    <label>regionCode</label>
-    <input type="text" name="regionCode" value="77"/>
-  </div>
-  <div>
-    <label>city</label>
-    <input type="text" name="city" value="Москва"/>
-  </div>
-  <div>
-    <label>argee</label>
-    <input type="text" name="argee" value="1"/>
-  </div>
-  <div>
-    <label>clear</label>
-    <input type="text" name="clear" value=""/>
-  </div>
-  <div>
-    <label>dev</label>
-    <input type="text" name="dev" value="dev"/>
-  </div>
-  <div>
-    <label>advCode</label>
-    <input type="text" name="advCode" value=""/>
-  </div>
-  <div>
-    <label>platformId</label>
-    <input type="text" name="platformId" value="alfasite"/>
-  </div>
-  <input type="button" value="js submit" name ="js submit" onclick="return submitForm2(this.form)" >
-  <input type="submit" value="post submit" name="post submit">
- </form>
-  <script type="text/javascript">
-    function submitForm(form){
-        console.log('form', form);
-        var url = form.getAttribute("action");
-        var formData = {};
-        $(form).find("input[name]").each(function (index, node) {
-            formData[node.name] = node.value;
-        });
-        $.post(url, formData).done(function (data) {
-            alert(data);
-        });
-    }
-    function submitForm2(form) {
-        var url = form.getAttribute("action");
-        var formData = $(form).serializeArray();
-        $.post(url, formData).done(function (data) {
-            alert(data);
-        });
-    }
-  </script>
+    <h2>Открыть счет в Альфа-Банке</h2>
+    <!-- <form method="post" action="http://ufrappint1/ona/lead"> -->
+    <!-- <form method="post" action="http://localhost:8080/lead"> -->
+    <form method="post" action="https://anketa.alfabank.ru/ona/lead">
+        <p><b>Вводи данные</b></p>
+        <div>
+            <label>phone</label>
+            <input type="text" name="phone" value="79165926645" />
+        </div>
+        <div>
+            <label>region</label>
+            <input type="text" name="name" value="Билайн"/>
+        </div>
+        <div>
+            <label>regionCode</label>
+            <input type="text" name="regionCode" value="77"/>
+        </div>
+        <div>
+            <label>city</label>
+            <input type="text" name="city" value="Москва"/>
+        </div>
+        <div>
+            <label>argee</label>
+            <input type="text" name="argee" value="1"/>
+        </div>
+        <div>
+            <label>clear</label>
+            <input type="text" name="clear" value=""/>
+        </div>
+        <div>
+            <label>dev</label>
+            <input type="text" name="dev" value="dev"/>
+        </div>
+        <div>
+            <label>advCode</label>
+            <input type="text" name="advCode" value=""/>
+        </div>
+        <div>
+            <label>platformId</label>
+            <input type="text" name="platformId" value="alfasite"/>
+        </div>
+        <input type="button" value="js submit" name ="js submit" onclick="return submitForm2(this.form)" >
+        <input type="submit" value="post submit" name="post submit">
+    </form>
+    <script type="text/javascript">
+        function submitForm(form){
+            console.log('form', form);
+            var url = form.getAttribute("action");
+            var formData = {};
+            $(form).find("input[name]").each(function (index, node) {
+                formData[node.name] = node.value;
+            });
+            $.post(url, formData).done(function (data) {
+                alert(data);
+            });
+        }
+        function submitForm2(form) {
+            var url = form.getAttribute("action");
+            var formData = $(form).serializeArray();
+            $.post(url, formData).done(function (data) {
+                alert(data);
+            });
+        }
+    </script>
 </div>
