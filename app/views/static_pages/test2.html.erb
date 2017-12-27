@@ -1,17 +1,18 @@
 <div class="container">
     <h2>Открыть счет в Альфа-Банке</h2>
     <!-- <form method="post" action="http://ufrappint1/ona/lead"> -->
-    <!-- <form method="post" action="http://localhost:8080/lead"> -->
-    <form method="post" action="https://anketa.alfabank.ru/ona/lead">
+    <form method="post" action="http://localhost:8080/lead">
+    <!-- <form method="post" action="https://anketa.alfabank.ru/ona/lead"> -->
     <!-- <form method="post" action="http://ufr/ona/lead"> -->
         <p><b>Вводи данные</b></p>
         <div>
             <label>phone</label>
-            <input type="text" name="phone" value="79165926645" />
+            <input type="text" name="phone" value="+7 916 592-66-45" />
+            <!-- <input type="text" name="phone" value="79165926645" /> -->
         </div>
         <div>
-            <label>name</label>
-            <input type="text" name="name" value="Билайн"/>
+            <label>region</label>
+            <input type="text" name="region" value="moscow"/>
         </div>
         <div>
             <label>regionCode</label>
@@ -19,19 +20,7 @@
         </div>
         <div>
             <label>city</label>
-            <input type="text" name="city" value="Москва"/>
-        </div>
-        <div>
-            <label>argee</label>
-            <input type="text" name="argee" value="1"/>
-        </div>
-        <div>
-            <label>clear</label>
-            <input type="text" name="clear" value=""/>
-        </div>
-        <div>
-            <label>dev</label>
-            <input type="text" name="dev" value="dev"/>
+            <input type="text" name="city" value="moscow"/>
         </div>
         <div>
             <label>advCode</label>
@@ -61,21 +50,6 @@
             var formData = $(form).serializeArray();
             $.post(url, formData).done(function (data) {
                 alert(data);
-            });
-        }
-    </script>
-</div>
-
-
-<div class="container">
-    <h2>Cors ONA-AO-UI</h2>
-    <input type="button" value="js submit" name ="js submit" onclick="return submitForm3()" >
-    <script type="text/javascript">
-        function submitForm3(form) {
-            var url = "http://localhost:8080/api/social/vk";
-            var data = { "type": "confirmation", "group_id": 158025496 };
-            $.post(url, data).done(function (data) {
-                console.log(done);
             });
         }
     </script>
