@@ -1,9 +1,8 @@
 class StaticPagesController < ApplicationController
 
-  def test
-  end
-
+  def test; end
   def test2; end
+  def gmaps; end
   
   def index
   	@married = params[:married].to_i
