@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 
   def test; end
   def test2; end
+  def test3; end
   def gmaps; end
   
   def index
